@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ng-forms-ext-sample';
+  text1 = '';
+  text2 = 'aaa';
 }
