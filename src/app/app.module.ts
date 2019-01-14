@@ -3,11 +3,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import './extensions';
+
 import { AppComponent } from './app.component';
+import { InitValueDirective } from './directives';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InitValueDirective,
   ],
   imports: [
     BrowserModule,
