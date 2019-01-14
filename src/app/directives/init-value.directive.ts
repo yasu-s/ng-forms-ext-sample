@@ -1,5 +1,5 @@
 import { Directive, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
-import { NgModel, NgForm } from '@angular/forms';
+import { NgModel } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 
 /**
@@ -14,24 +14,20 @@ export class InitValueDirective implements OnInit, OnDestroy {
 
   /** */
   @Input()
-  initValue: any;
-
-  /** */
-  @Input()
-  set edited(value: boolean) {
-    this._edited = value;
-    if (this.ngModel) {
-      this.ngModel.control.edited = value;
+  set initValue(value: any) {
+    this._initValue = value;
+    if (this.ngModel && this.ngModel.control) {
+      this.ngModel.control.initValue = value;
     }
   }
-  get edited() { return this._edited; }
+  get initValue() { return this._initValue; }
 
   /** */
   @Output()
-  editedChange = new EventEmitter<boolean>();
+  changeEdited = new EventEmitter<boolean>();
 
-  /**  */
-  private _edited = false;
+  /** */
+  private _initValue: any;
 
   /** */
   private onDestroy$ = new EventEmitter();
@@ -44,28 +40,20 @@ export class InitValueDirective implements OnInit, OnDestroy {
    * InitValueDirective create.
    * @param ngModel NgModel
    */
-  constructor(private ngModel: NgModel) {
-
-  }
+  constructor(private ngModel: NgModel) {}
 
   /**
    *
    */
   ngOnInit(): void {
     if (this.ngModel) {
-      this.ngModel.valueChanges.pipe(takeUntil(this.onDestroy$)).subscribe(value => {
-        this._edited = value !== this.initValue;
-        this.editedChange.emit(this._edited);
-        this.ngModel.setEdited(this._edited);
-
-        // Formに設定
-        if (this.ngModel.formDirective) {
-          const form = this.ngModel.formDirective as NgForm;
-          const dirs = (this.ngModel.formDirective as any)._directives;
-          const controls = (form.controls) ? Object.keys(form.controls).map(key => form.controls[key]) : [];
-          form.setEdited(controls.some(ctr => ctr.edited));
-        }
+      this.ngModel.valueChanges.pipe(takeUntil(this.onDestroy$)).subscribe(_ => {
+        this.changeEdited.emit(this.ngModel.isEdited());
       });
+
+      if (this.ngModel.control) {
+        this.ngModel.control.initValue = this.initValue;
+      }
     }
   }
 

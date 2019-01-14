@@ -6,8 +6,13 @@ declare module '@angular/forms/src/model' {
 
   interface AbstractControl {
     /** */
-    edited: boolean;
+    initValue: any;
+    /** */
+    isEdited(): boolean;
   }
 }
 
-AbstractControl.prototype.edited = false;
+AbstractControl.prototype.isEdited = function() {
+  const control = this as AbstractControl;
+  return control.value !== control.initValue;
+};
