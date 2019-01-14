@@ -1,7 +1,6 @@
 <div>
   <form #form1="ngForm">
-    <input type="text" name="memo" required [(ngModel)]="text1" #txt1="ngModel"
-      [initValue]="''" [(edited)]="edited1">
+    <input type="text" name="memo" required [(ngModel)]="text1" #txt1="ngModel">
     <ul>
       <li *ngIf="form1.valid">form.valid</li>
       <li *ngIf="form1.invalid">form.invalid</li>
@@ -10,25 +9,6 @@
       <li *ngIf="form1.pristine">form.pristine</li>
       <li *ngIf="form1.dirty">form.dirty</li>
       <li>txt1.touchedOrDirty {{ txt1.touchedOrDirty() ? 'true' : 'false' }}</li>
-      <li>txt1.edited {{ txt1.edited ? 'true' : 'false' }}</li>
-      <li>edited {{ edited1 ? 'true' : 'false' }}</li>
-    </ul>
-  </form>
-</div>
-<div>
-  <form #form2="ngForm">
-    <input type="text" name="memo" required [(ngModel)]="text2" #txt2="ngModel"
-      [initValue]="'aaa'" [(edited)]="edited2">
-    <ul>
-      <li *ngIf="form2.valid">form.valid</li>
-      <li *ngIf="form2.invalid">form.invalid</li>
-      <li *ngIf="form2.touched">form.touched</li>
-      <li *ngIf="form2.untouched">form.untouched</li>
-      <li *ngIf="form2.pristine">form.pristine</li>
-      <li *ngIf="form2.dirty">form.dirty</li>
-      <li>txt2.touchedOrDirty {{ txt2.touchedOrDirty() ? 'true' : 'false' }}</li>
-      <li>txt2.edited {{ txt2.edited ? 'true' : 'false' }}</li>
-      <li>edited {{ edited2 ? 'true' : 'false' }}</li>
     </ul>
   </form>
 </div>

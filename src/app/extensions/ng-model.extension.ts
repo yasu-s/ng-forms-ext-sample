@@ -5,9 +5,6 @@ import { NgModel } from '@angular/forms';
 declare module '@angular/forms/src/directives/ng_model' {
 
   interface NgModel {
-    /** */
-    edited: boolean;
-
     /**
      * NgModel.touched or dirty
      * @returns touched or dirty

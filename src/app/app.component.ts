@@ -7,7 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   text1 = '';
-  text2 = 'aaa';
-  edited1 = false;
-  edited2 = false;
 }
