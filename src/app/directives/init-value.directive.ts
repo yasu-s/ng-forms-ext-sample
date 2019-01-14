@@ -1,5 +1,5 @@
 import { Directive, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { NgModel, NgForm } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 
 /**
@@ -21,7 +21,7 @@ export class InitValueDirective implements OnInit, OnDestroy {
   set edited(value: boolean) {
     this._edited = value;
     if (this.ngModel) {
-      this.ngModel.edited = value;
+      this.ngModel.control.edited = value;
     }
   }
   get edited() { return this._edited; }
@@ -56,7 +56,15 @@ export class InitValueDirective implements OnInit, OnDestroy {
       this.ngModel.valueChanges.pipe(takeUntil(this.onDestroy$)).subscribe(value => {
         this._edited = value !== this.initValue;
         this.editedChange.emit(this._edited);
-        this.ngModel.edited = this._edited;
+        this.ngModel.setEdited(this._edited);
+
+        // Formに設定
+        if (this.ngModel.formDirective) {
+          const form = this.ngModel.formDirective as NgForm;
+          const dirs = (this.ngModel.formDirective as any)._directives;
+          const controls = (form.controls) ? Object.keys(form.controls).map(key => form.controls[key]) : [];
+          form.setEdited(controls.some(ctr => ctr.edited));
+        }
       });
     }
   }

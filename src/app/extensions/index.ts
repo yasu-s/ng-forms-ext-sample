@@ -1,3 +1,3 @@
 /* tslint:disable */
-import './ng-form.extension';
-import './ng-model.extension';
+import './abstract_control.extension';
+import './abstract_control_directive.extension';

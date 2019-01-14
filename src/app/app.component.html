@@ -9,8 +9,8 @@
       <li *ngIf="form1.untouched">form.untouched</li>
       <li *ngIf="form1.pristine">form.pristine</li>
       <li *ngIf="form1.dirty">form.dirty</li>
-      <li>txt1.touchedOrDirty {{ txt1.touchedOrDirty() ? 'true' : 'false' }}</li>
-      <li>txt1.edited {{ txt1.edited ? 'true' : 'false' }}</li>
+      <li>txt1.edited {{ txt1.isEdited() ? 'true' : 'false' }}</li>
+      <li>form1.edited {{ form1.isEdited() ? 'true' : 'false' }}</li>
       <li>edited {{ edited1 ? 'true' : 'false' }}</li>
     </ul>
   </form>
@@ -26,8 +26,7 @@
       <li *ngIf="form2.untouched">form.untouched</li>
       <li *ngIf="form2.pristine">form.pristine</li>
       <li *ngIf="form2.dirty">form.dirty</li>
-      <li>txt2.touchedOrDirty {{ txt2.touchedOrDirty() ? 'true' : 'false' }}</li>
-      <li>txt2.edited {{ txt2.edited ? 'true' : 'false' }}</li>
+      <li>txt2.edited {{ txt2.isEdited() ? 'true' : 'false' }}</li>
       <li>edited {{ edited2 ? 'true' : 'false' }}</li>
     </ul>
   </form>
