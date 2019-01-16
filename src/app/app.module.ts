@@ -5,12 +5,13 @@ import { FormsModule } from '@angular/forms';
 import './extensions';
 
 import { AppComponent } from './app.component';
-import { InitValueDirective } from './directives';
+import { InitValueDirective, FormExtDirective } from './directives';
 
 @NgModule({
   declarations: [
     AppComponent,
     InitValueDirective,
+    FormExtDirective,
   ],
   imports: [
     BrowserModule,

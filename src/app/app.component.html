@@ -1,5 +1,5 @@
 <div>
-  <form #form1="ngForm">
+  <form #form1="ngForm" (changeEdited)="setEditedForm1($event)">
     <input type="text" name="txt1" required [(ngModel)]="text1" #txt1="ngModel"
       [initValue]="''" (changeEdited)="setEdited1($event)">
     <ul>
@@ -12,11 +12,12 @@
       <li>form1.edited {{ form1.isEdited() ? 'true' : 'false' }}</li>
       <li>txt1.edited {{ txt1.isEdited() ? 'true' : 'false' }}</li>
       <li>edited {{ edited1 ? 'true' : 'false' }}</li>
+      <li>editedForm1 {{ editedForm1 ? 'true' : 'false' }}</li>
     </ul>
   </form>
 </div>
 <div>
-  <form #form2="ngForm">
+  <form #form2="ngForm" (changeEdited)="setEditedForm2($event)">
     <input type="text" name="txt2" required [(ngModel)]="text2" #txt2="ngModel"
       [initValue]="'aaa'" (changeEdited)="setEdited2($event)">
     <input type="text" name="txt3" required [(ngModel)]="text3" #txt3="ngModel"
@@ -33,6 +34,7 @@
       <li>txt3.edited {{ txt3.isEdited() ? 'true' : 'false' }}</li>
       <li>edited2 {{ edited2 ? 'true' : 'false' }}</li>
       <li>edited3 {{ edited3 ? 'true' : 'false' }}</li>
+      <li>editedForm2 {{ editedForm2 ? 'true' : 'false' }}</li>
     </ul>
   </form>
 </div>

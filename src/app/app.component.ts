@@ -12,6 +12,8 @@ export class AppComponent {
   edited1 = false;
   edited2 = false;
   edited3 = false;
+  editedForm1 = false;
+  editedForm2 = false;
 
   setEdited1(value: boolean): void {
     this.edited1 = value;
@@ -23,5 +25,13 @@ export class AppComponent {
 
   setEdited3(value: boolean): void {
     this.edited3 = value;
+  }
+
+  setEditedForm1(value: boolean): void {
+    this.editedForm1 = value;
+  }
+
+  setEditedForm2(value: boolean): void {
+    this.editedForm2 = value;
   }
 }
